@@ -1,4 +1,6 @@
 import model.Szo;
+
+import javax.swing.*;
 import java.util.List;
 import java.util.Scanner;
 
@@ -6,7 +8,6 @@ public class Main {
     public static void main(String[] args) {
 
         List<Szo> szavak = Program.fajlbeolvas();
-
 
         if (szavak.isEmpty()) {
             System.out.println("A lista üres, ellenőrizd az adatok.txt fájlt!");
@@ -26,7 +27,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println("\n--- Interaktív betűcsere ---");
         System.out.println("Válassz egy szót a listából (0 - " + (szavak.size() - 1) + "):");
-
 
         for (int i = 0; i < szavak.size(); i++) {
             System.out.println(i + ". " + szavak.get(i).getSzo());
@@ -51,5 +51,10 @@ public class Main {
 
         sc.close();
         System.out.println("\nProgram vége.");
+
+        SwingUtilities.invokeLater(() -> {
+            SzoAblak ablak = new SzoAblak();
+            ablak.setVisible(true);
+        });
     }
 }
