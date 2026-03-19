@@ -1,3 +1,6 @@
+package view;
+
+import controller.Program;
 import model.Szo;
 import javax.swing.*;
 import java.awt.*;
@@ -9,20 +12,20 @@ public class SzoAblak extends JFrame {
     private JButton gombStat;
 
     public SzoAblak() {
-        // Ablak alapbeállításai
+
         setTitle("Szó Statisztika GUI");
         setSize(500, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // Középre helyezi az ablakot
+        setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // Szöveges terület a megjelenítéshez
+
         kijelzo = new JTextArea();
         kijelzo.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(kijelzo);
         add(scrollPane, BorderLayout.CENTER);
 
-        // Gombok panelje
+
         JPanel gombPanel = new JPanel();
         gombBeolvas = new JButton("Fájl Beolvasása");
         gombStat = new JButton("Statisztika");
@@ -31,7 +34,7 @@ public class SzoAblak extends JFrame {
         gombPanel.add(gombStat);
         add(gombPanel, BorderLayout.SOUTH);
 
-        // Eseménykezelők
+
         gombBeolvas.addActionListener(e -> {
             List<Szo> szavak = Program.fajlbeolvas();
             kijelzo.setText("Beolvasott szavak:\n");
@@ -54,7 +57,6 @@ public class SzoAblak extends JFrame {
             sb.append("--- Betűk ---\n");
 
             kijelzo.setText(sb.toString());
-            // Itt a konzolra is kiírja a részletes betűstatisztikát, ahogy megírtad
             Program.betuStatisztika(szavak);
         });
     }

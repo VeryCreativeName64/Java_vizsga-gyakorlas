@@ -1,3 +1,6 @@
+package view;
+
+import controller.Program;
 import model.Szo;
 
 import javax.swing.*;

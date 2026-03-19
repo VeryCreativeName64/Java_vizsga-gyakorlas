@@ -1,3 +1,5 @@
+package controller;
+
 import model.Szo;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -77,13 +79,13 @@ public class Program {
         return false;
     }
 
-    public static void betuStatisztika(List<Szo> lista) {
+    public static String betuStatisztika(List<Szo> lista) {
+        StringBuilder sb = new StringBuilder();
         for (Szo s : lista) {
             String aktualisSzo = s.getSzo().toLowerCase();
-            System.out.println("Szó: " + aktualisSzo);
+            sb.append("Szó: ").append(aktualisSzo).append("\n");
 
             String vizsgaltBetuk = "";
-
             for (int i = 0; i < aktualisSzo.length(); i++) {
                 char aktualisBetu = aktualisSzo.charAt(i);
 
@@ -94,14 +96,28 @@ public class Program {
                             db++;
                         }
                     }
-                    System.out.println("  - " + aktualisBetu + ": " + db + " db");
+                    sb.append("  - ").append(aktualisBetu).append(": ").append(db).append(" db\n");
                     vizsgaltBetuk += aktualisBetu;
                 }
             }
-            System.out.println("--------------------");
+            sb.append("--------------------\n");
         }
+        return sb.toString();
     }
 
+    public static String eBetuStatisztika(List<Szo> lista) {
+        StringBuilder sb = new StringBuilder();
+        for (Szo s : lista) {
+            String aktualisSzo = s.getSzo().toLowerCase();
+            int db = 0;
 
-
+            for (int i = 0; i < aktualisSzo.length(); i++) {
+                if (aktualisSzo.charAt(i) == 'e') {
+                    db++;
+                }
+            }
+            sb.append("Szó: ").append(aktualisSzo).append(" -> 'e' betűk: ").append(db).append("\n");
+        }
+        return sb.toString();
+    }
 }
